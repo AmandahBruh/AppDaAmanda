@@ -35,16 +35,4 @@ export default function RootNavigation() {
       </Tab.Navigator>
     </NavigationContainer>
   );
-
-  const Stack = createNativeStackNavigator();
-
-  function MyStack() {
-    return (
-        <NavigationContainer>
-        <Stack.Navigator>
-            <Stack.Screen name="Social" component={SocialScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
 }
