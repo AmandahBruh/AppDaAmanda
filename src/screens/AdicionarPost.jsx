@@ -1,5 +1,5 @@
-import { Platform, View, Image } from "react-native";
-import { Button, TextInput } from "react-native-paper";
+import { Platform, View, Image, Button } from "react-native";
+import { TextInput } from "react-native-paper";
 import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../config/firebase";

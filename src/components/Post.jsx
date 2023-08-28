@@ -90,7 +90,7 @@ const Post = ({ navigation }) => {
                   textColor="#fff"
                   onPress={() => likePost(post.id)}
                 >
-                <MaterialCommunityIcons name="heart" size={35} color="white" />
+                <MaterialCommunityIcons name="heart" size={30} color="white" />
                 </Button>
                 
             </Card.Actions>
