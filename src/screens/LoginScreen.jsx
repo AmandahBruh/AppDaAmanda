@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { View, TextInput } from "react-native";
 import { Button, Text } from "react-native-paper";
+import Post from "../components/Post";
 // import { auth } from "../config/Firebase";
 
 import styles from "../utils/styles";
@@ -19,7 +20,7 @@ export default function LoginScreen({ navigation }) {
     console.log(senha);
     signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
-        navigation.navigate('Social');
+        navigation.navigate('TabsNavigation');
       })
       .catch((error) => {
         if (error.code === "auth/user-not-found") {

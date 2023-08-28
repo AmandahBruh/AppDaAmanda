@@ -1,0 +1,106 @@
+import { Platform, View } from "react-native";
+import { Button, TextInput } from "react-native-paper";
+import { addDoc, collection } from "firebase/firestore";
+import { useState } from "react";
+import { db } from "../config/firebase";
+import * as ImagePicker from "expo-image-picker";
+
+export default function AddPostScreen() {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  async function inserirPost() {
+    try {
+      const payload = {
+        Title: title,
+        Content: content,
+      };
+      const post = await addDoc(postRef, payload);
+      console.log(post);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const postRef = collection(db, "Post");
+
+  const ImageUploadComponent = () => {
+    const [image, setImage] = useState(null);
+
+    const pickImage = async () => {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      if (!result.cancelled) {
+        setImage(result.uri);
+      }
+    };
+
+    const uploadImage = async () => {
+      try {
+        const response = await fetch(image);
+        const blob = await response.blob();
+        const base64Image = await convertBlobToBase64(blob);
+    
+        const ref = collection(db, "images");
+        const docRef = await addDoc(ref, { image: base64Image });
+    
+        console.log("Image uploaded with ID: ", docRef.id);
+      } catch (error) {
+        console.error("Error uploading image: ", error);
+      }
+    };
+    
+
+    const convertBlobToBase64 = (blob) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          resolve(reader.result);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    };
+    const ImageComponent = () => {
+      if (Platform.OS === "web") {
+        return <img src={image} style={{ width: 200, height: 200 }} />;
+      } else {
+        return (
+          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+        );
+      }
+    };
+
+    return (
+      <View>
+        {image && <ImageComponent />}
+        <Button title="Pick an image" onPress={pickImage} />
+        <Button title="Upload image" onPress={uploadImage} disabled={!image} />
+      </View>
+    );
+  };
+
+  return (
+    <View>
+      <View>
+        <View>
+          <TextInput label="Titulo" value={title} onChangeText={setTitle} />
+          <TextInput
+            label="Descrição"
+            value={content}
+            onChangeText={setContent}
+          />
+          <ImageUploadComponent />
+          <Button mode="contained" onPress={inserirPost}>
+            Criar um Post
+          </Button>
+        </View>
+      </View>
+    </View>
+  );
+}
