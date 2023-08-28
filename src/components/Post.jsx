@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Avatar, Button, Card, Text } from "react-native-paper";
 import { db } from "../config/firebase";
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, increment, updateDoc } from "firebase/firestore";
 import { View } from "react-native-web";
 import { ScrollView } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 
 const Post = ({ navigation }) => {
   const [post, setPost] = React.useState([]);
@@ -32,6 +33,16 @@ const Post = ({ navigation }) => {
       console.log("Error deleting post:", error);
     }
   };
+
+  const likePost = async (postId) => {
+    try {
+      await updateDoc(doc(db, "Post", postId), {
+        likes: increment(1),
+      });
+    } catch (error) {
+      console.log("Error updating post:", error);
+    }
+  }
 
 
 
@@ -64,7 +75,24 @@ const Post = ({ navigation }) => {
                 onPress={() => deletePost(post.id)}
               >
                 <MaterialCommunityIcons name="close" size={35} />
+
+                
               </Button>
+              <Button
+                style={{
+                  alignItems: "center",
+                  width: 50,
+                  height: 50,
+                  borderRadius: 2 * 70,
+                  paddingTop: 3,
+                  }}
+                  mode="text"
+                  textColor="#fff"
+                  onPress={() => likePost(post.id)}
+                >
+                <MaterialCommunityIcons name="heart" size={35} color="white" />
+                </Button>
+                
             </Card.Actions>
           </Card>
         ))}
