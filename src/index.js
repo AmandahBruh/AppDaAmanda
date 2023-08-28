@@ -13,15 +13,15 @@ export default function RootNavigation() {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen
-          name="Login"
-          component={LoginScreen}
+        <Tab.Navigator>
+          <Tab.Screen
+          name="Cadastro"
+          component={CadastrarScreen}
           options={{ headerShown: false }}
         />
         <Tab.Screen
-          name="Cadastro"
-          component={CadastrarScreen}
+          name="Login"
+          component={LoginScreen}
           options={{ headerShown: false }}
         />
         <Tab.Screen
