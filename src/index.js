@@ -14,7 +14,7 @@ export default function RootNavigation() {
   return (
     <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen
+        <Tab.Screen
           name="Cadastro"
           component={CadastrarScreen}
           options={{ headerShown: false }}

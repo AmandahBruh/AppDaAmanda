@@ -1,11 +1,11 @@
 // import { createUserWithEmailAndPassword } from "firebase/auth";
 import { View, TextInput } from "react-native";
 import { Button, Text } from "react-native-paper";
-import styles from "../utils/styles";
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { styles } from "../utils/styles";
 
 export default function CadastrarScreen({ navigation }) {
   const [nome, setNome] = useState("");
@@ -45,6 +45,7 @@ export default function CadastrarScreen({ navigation }) {
       </Text>
 
       <TextInput
+        style={styles.input}
         label="Nome"
         placeholder="Digite seu nome..."
         multiline={false}
@@ -54,6 +55,7 @@ export default function CadastrarScreen({ navigation }) {
 
       <TextInput
         label="E-mail"
+        style={styles.input}
         placeholder="Digite seu e-mail..."
         multiline={false}
         value={email}
@@ -62,6 +64,7 @@ export default function CadastrarScreen({ navigation }) {
 
       <TextInput
         label="Senha"
+        style={styles.input}
         secureTextEntry={true}
         placeholder="Digite sua Senha..."
         multiline={false}
