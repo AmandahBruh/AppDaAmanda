@@ -5,6 +5,7 @@ import { collection, deleteDoc, doc, getDocs, increment, updateDoc } from "fireb
 import { View } from "react-native-web";
 import { ScrollView } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { styles } from "../utils/styles";
 
 
 const Post = ({ navigation }) => {

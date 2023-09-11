@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AddPostScreen from "./screens/AdicionarPost";
 import Post from "./components/Post";
 
+
 export default function RootNavigation() {
   const Tab = createNativeStackNavigator();
 

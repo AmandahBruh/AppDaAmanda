@@ -1,6 +1,7 @@
 import { ScrollView, View } from "react-native";
 import Post from "../components/Post";
 import { Button } from "react-native-paper";
+import { styles } from "../utils/styles";
 
 export default function Social({ navigation }) {
   return (

@@ -39,7 +39,7 @@ export default function CadastrarScreen({ navigation }) {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>
         <h1>Cadastrar </h1>
       </Text>

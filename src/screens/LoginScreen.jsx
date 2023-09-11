@@ -2,13 +2,15 @@
 import { useState } from "react";
 import { View, TextInput } from "react-native";
 import { Button, Text } from "react-native-paper";
+// import { styles } from "../utils/styles";
 import Post from "../components/Post";
 // import { auth } from "../config/Firebase";
 
-import styles from "../utils/styles";
+// import styles from "../utils/styles";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 import SocialScreen from "./SocialScreen";
+import { styles } from "../utils/styles";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -39,10 +41,11 @@ export default function LoginScreen({ navigation }) {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Login</Text>
       {error && <Text>{error}</Text>}
       <TextInput
+        style={styles.input}
         label="E-mail"
         placeholder="Digite seu e-mail..."
         multiline={false}
@@ -50,6 +53,7 @@ export default function LoginScreen({ navigation }) {
         onChangeText={setEmail}
       />
       <TextInput
+        style={styles.input}
         label="Senha"
         secureTextEntry={true}
         placeholder="Digite sua Senha..."

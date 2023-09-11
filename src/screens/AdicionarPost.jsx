@@ -4,6 +4,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../config/firebase";
 import * as ImagePicker from "expo-image-picker";
+import { styles } from "../utils/styles";
 
 export default function AddPostScreen() {
   const [title, setTitle] = useState("");
@@ -76,10 +77,11 @@ export default function AddPostScreen() {
 
   return (
     <View>
-      <View>
+      <View style={styles.container}>
         <View>
-          <TextInput label="Titulo" value={title} onChangeText={setTitle} />
+          <TextInput style={styles.input} label="Titulo" value={title} onChangeText={setTitle} />
           <TextInput
+            style={styles.input}
             label="Descrição"
             value={content}
             onChangeText={setContent}
